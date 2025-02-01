@@ -956,12 +956,17 @@ if __name__ == "__main__":
                         print(Style.BRIGHT +
                             f"Rendering {args.out}/{keycap.name}.{keycap.file_type}..."
                             + Style.RESET_ALL)
-                        print(keycap)
+                        # print(keycap) # Uncomment to see the keycap command details
                         retcode, output = getstatusoutput(str(keycap))
                         if retcode == 0: # Success!
                             print(
                                 f"{args.out}/{keycap.name}.{keycap.file_type} "
                                 f"rendered successfully")
+                        else:
+                            print(Style.BRIGHT +
+                                f"Failed to render {args.out}/{keycap.name}.{keycap.file_type}"
+                                + Style.RESET_ALL)
+                            print(output)
                     if args.legends:
                         keycap.name = f"{keycap.name}_legends"
                         # Change it to .stl since PrusaSlicer doesn't like .3mf
